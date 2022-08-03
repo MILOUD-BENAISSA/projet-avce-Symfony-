@@ -16,7 +16,7 @@
             <p>{{ pizza.description }}</p>
             <p>Prix : {{ pizza.price }} €</p>
             <p>
-                <a href="">Ajouter au panier</a>
+                <a href="{{ path('app_basket_addArticle', {id: pizza.id}) }}">Ajouter au panier</a>
             </p>
  </div>
     {% endfor %}

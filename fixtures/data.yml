@@ -42,6 +42,12 @@ App\Entity\User:
         phone: 0606060606
         address: "@address_*"
 
+
+App\Entity\Basket:
+    basket_user:
+        user: "@user_user"
+        
+
 App\Entity\Pizza:
   pizza_magarita:
     name: La margarita

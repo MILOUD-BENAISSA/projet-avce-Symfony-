@@ -6,8 +6,10 @@ use App\Entity\User;
 use App\Form\AddressType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -49,6 +51,11 @@ class RegistrationType extends AbstractType
             ->add('address', AddressType::class, [
                 'label' => 'Votre Adresse :',
             ])
+
+
+
+
+
             ->add('send', SubmitType::class, [
                 'label' => "S'inscrire",
             ]);
