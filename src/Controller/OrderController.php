@@ -44,7 +44,7 @@ class OrderController extends AbstractController
         ]);
     }
 
-    return $this->render('order/display.html.twig', [
+    return $this->render('front/order/display.html.twig', [
     'form' => $form->createView(),
     ]);
 }
@@ -52,7 +52,7 @@ class OrderController extends AbstractController
     #[Route('/commander/{id}/validation', name: 'app_order_validate')]
     public function validate(Order $order): Response
     {
-        return $this->render('order/validate.html.twig', [
+        return $this->render('front/order/validate.html.twig', [
             'order' => $order,
         ]);
     }

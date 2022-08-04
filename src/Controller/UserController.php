@@ -113,4 +113,40 @@ class UserController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+
+
+    #[Route('/mon-profil', name: 'app_user_profile')]
+    #[IsGranted('ROLE_USER')]
+    public function profile(
+        Request $request,
+        UserRepository $repository,
+        UserPasswordHasherInterface $hasher,
+    ): Response {
+        $form = $this->createForm(RegistrationType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            if ($form->get('password')->getData()) {
+                $user->setPassword($hasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData(),
+                ));
+            }
+
+            $repository->add($user);
+
+            return $this->redirectToRoute('app_user_logout');
+        }
+
+        return $this->render('front/user/profile.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+
 }
