@@ -20,7 +20,7 @@
                             <i class="fa-solid fa-circle-minus"></i>
                         </a>
                         <p class="quantity">{{ article.quantity }}</p>
-                        <a class="btn plus" href="#">
+                        <a class="btn plus" href="{{ path('app_basket_decrease' , {id: article.id} ) }}">
                             <i class="fa-solid fa-circle-plus"></i>
                         </a>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="price">
                             {{ article.total }} €
                         </div>
-                        <a class="btn" href="">
+                        <a class="btn" href="{{ path('app_basket_increase' , {id: article.id} ) }}">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span>Ajouter au panier</span>
                         </a>

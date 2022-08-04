@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Pizza;
 use App\Entity\Article;
 use App\Repository\BasketRepository;
+use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -40,9 +41,40 @@ class BasketController extends AbstractController
 
         return $this->redirectToRoute('app_basket_display');
     }
+    
+    #[Route('/mon-panier/{id}/plus', name: 'app_basket_increase')]
+    public function increase(Article $article, ArticleRepository $repository): Response
+    {
+        $article->setQuantity($article->getQuantity() + 1);
+
+        $repository->add($article, true);
+
+        return $this->redirectToRoute('app_basket_display');
+    }
 
 
 
+    #[Route('/mon-panier/{id}/diminuer', name: 'app_basket_decrease')]
+    public function decrease(Article $article, ArticleRepository $repository, BasketRepository $basketRepo): Response
+    {
+        $article->setQuantity($article->getQuantity() - 1);
+
+        if ($article->getQuantity() <= 0) {
+            /** @var User $user */
+            $user = $this->getUser();
+            $basket = $user->getBasket();
+
+            $basket->removeArticle($article);
+
+            $basketRepo->add($basket, true);
+
+            return $this->redirectToRoute('app_basket_display');
+        }
+
+        $repository->add($article, true);
+
+        return $this->redirectToRoute('app_basket_display');
+    }
 
 
 
