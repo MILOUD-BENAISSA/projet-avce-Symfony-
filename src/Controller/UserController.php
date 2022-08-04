@@ -139,7 +139,7 @@ class UserController extends AbstractController
 
             $repository->add($user);
 
-            return $this->redirectToRoute('app_user_logout');
+            return $this->redirectToRoute('app_logout');
         }
 
         return $this->render('front/user/profile.html.twig', [
