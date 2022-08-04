@@ -88,7 +88,7 @@ class UserController extends AbstractController
 
 
         // afficher la page d'inscription
-        return $this->render('user/registration.html.twig', [
+        return $this->render('front/user/registration.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -105,7 +105,7 @@ class UserController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('front/security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     #[Route(path: '/deconnexion', name: 'app_logout')]

@@ -20,7 +20,7 @@ class BasketController extends AbstractController
     #[Route('/mon-panier', name: 'app_basket_display')]
     public function display(): Response
     {
-        return $this->render('basket/display.html.twig');
+        return $this->render('front/basket/display.html.twig');
     }
 
     #[Route('/mon-panier/{id}/ajouter', name: 'app_basket_addArticle')]
